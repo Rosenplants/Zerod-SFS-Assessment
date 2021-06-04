@@ -1,23 +1,27 @@
-import logo from './logo.svg';
+import { useEffect } from 'react';
+import { useDispatch } from 'react-redux';
 import './App.css';
+import { fetchDebts } from './store/debts';
+import Table from './components/Table';
 
 function App() {
+  const dispatch = useDispatch();
+
+  // As soon as the component mounts, fetches the data and updates the store
+  useEffect(() => {
+    const fetchData = async () => {
+      await dispatch(fetchDebts());
+    };
+
+    fetchData();
+  }, [dispatch]);
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <h1>Hello World</h1>
+      <Table />
+      <div id="button-row"></div>
+      <div id="total-row"></div>
     </div>
   );
 }
