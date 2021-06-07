@@ -58,7 +58,7 @@ th.checkbox {
 button {
   border: 1px solid;
   border-radius: 5px;
-  margin: 1px;
+  margin: 3px 1px;
 }
 
 button.add {
