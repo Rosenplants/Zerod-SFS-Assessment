@@ -2,6 +2,7 @@ import React from 'react';
 import { useSelector } from 'react-redux';
 
 export default function TotalRows() {
+  // Grabs the necessary totals from the Redux store
   const debts = useSelector((state) => state.debts);
   const activeRows = useSelector((state) => state.checkedRows);
   const totalBalance = useSelector((state) => state.totalBalance);

@@ -5,6 +5,7 @@ import { mainSwitch } from '../store/checkedRows';
 import { updateTotal } from '../store/totalBalance';
 
 export default function Table() {
+  // Grabs the debts and activeRows from the Redux Store and gives access to dispatching to the store
   const debts = useSelector((state) => state.debts);
   const activeRows = useSelector((state) => state.checkedRows);
   const dispatch = useDispatch();
@@ -17,16 +18,21 @@ export default function Table() {
     'Balance',
   ];
 
+  // Function for the catch all checkbox to check or uncheck all debts
   const checkAllHandler = (evt) => {
+    // First it grabs an array of all of the checkboxes
     const checkboxes = Array.from(
       document.getElementsByClassName('debt-checkbox')
     );
+
+    // If we have all of the checkboxes currently active, that means we need to uncheck them
     if (activeRows === checkboxes.length) {
       checkboxes.forEach((box) => (box.checked = false));
       dispatch(updateTotal(0));
       dispatch(mainSwitch(0));
       evt.target.checked = false;
     } else {
+      // else, we check all of them
       checkboxes.forEach((box) => (box.checked = true));
       dispatch(updateTotal(debts.reduce((acc, debt) => acc + debt.balance, 0)));
       dispatch(mainSwitch(checkboxes.length));

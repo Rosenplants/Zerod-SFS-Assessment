@@ -11,6 +11,8 @@ function App() {
   // Redux Hooks to allow us to easily fetch the debts and get access to them
   const dispatch = useDispatch();
   const error = useSelector((state) => state.error);
+
+  // Uses local state to determine if the pop up is open or closed
   const [isPopUpOpen, setPopUpOpen] = useState(false);
 
   // As soon as the component mounts, fetches the data and updates the store
@@ -18,6 +20,7 @@ function App() {
     dispatch(fetchDebts());
   }, [dispatch]);
 
+  // These two functions are just nicely named wrappers for passing down the setState hook
   const openPopUp = () => {
     setPopUpOpen(true);
   };
