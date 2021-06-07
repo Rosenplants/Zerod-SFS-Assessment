@@ -1,6 +1,22 @@
 /* Main App Styles */
+.App {
+  width: fit-content;
+}
+
+p {
+  margin: 0;
+}
+
+/* Multi - Use Styles */
+.bold {
+  font-weight: bold;
+}
 
 /* Table Styles */
+input {
+  margin: auto 2rem;
+}
+
 table {
   text-align: left;
 }
@@ -13,11 +29,49 @@ th {
 
 td {
   border: 1px solid lightslategray;
+  padding: 0.25rem 0;
   padding-right: 1rem;
+}
+
+td.checkbox,
+th.checkbox {
+  border: 0;
+  padding: 0;
 }
 
 .num {
   text-align: right;
   padding-right: 0;
   padding-left: 1rem;
+}
+
+/* Button Styles */
+button {
+  border: 1px solid;
+  border-radius: 5px;
+  margin: 1px;
+}
+
+button.add {
+  background-color: lightskyblue;
+  border-color: #4c89af;
+}
+
+button.remove {
+  background-color: lightcoral;
+  border-color: #b73303;
+}
+
+/* Total Row */
+#total-row {
+  width: 100%;
+  padding: 0.5rem 0;
+  background-color: lightskyblue;
+  display: flex;
+  justify-content: space-between;
+}
+
+/* Row Counts */
+#row-counts > span {
+  margin-right: 3rem;
 }

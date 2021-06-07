@@ -1,15 +1,16 @@
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import './App.css';
 import { fetchDebts } from './store/debts';
 import Table from './components/Table';
+import ButtonRow from './components/ButtonRow';
 
 function App() {
+  // Redux Hooks to allow us to easily fetch the debts and get access to them
   const dispatch = useDispatch();
   const debts = useSelector((state) => state.debts);
-
-  const [total, setTotal] = useState(0);
-  const [activeRows, setActiveRows] = useState(0);
+  const activeRows = useSelector((state) => state.checkedRows);
+  const totalBalance = useSelector((state) => state.totalBalance);
 
   // As soon as the component mounts, fetches the data and updates the store
   useEffect(() => {
@@ -18,20 +19,14 @@ function App() {
 
   return (
     <div className="App">
-      <h1>Hello World</h1>
-      <Table
-        setTotal={setTotal}
-        total={total}
-        activeRows={activeRows}
-        setActiveRows={setActiveRows}
-      />
-      <div id="button-row"></div>
-      <div id="total-row">
-        <p>
-          Total: <span className="num">${total.toFixed(2)}</span>
-        </p>
+      <h1>Sarah Zerod SFS Coding Assesment</h1>
+      <Table totalBalance={totalBalance} activeRows={activeRows} />
+      <ButtonRow />
+      <div id="total-row" className="bold">
+        <p>Total: </p>
+        <p className="num">${totalBalance.toFixed(2)}</p>
       </div>
-      <div id="row-counts">
+      <div id="row-counts" className="bold">
         <span>Total Row Count: {debts.length}</span>
         <span>Check Row Count: {activeRows}</span>
       </div>
