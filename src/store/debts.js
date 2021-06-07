@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { setError } from './error';
 
 // Action Type
 const GOT_DEBTS = 'GOT_DEBTS';
@@ -29,7 +30,7 @@ export const fetchDebts = () => async (dispatch) => {
     );
     dispatch(gotDebts(debts));
   } catch (error) {
-    console.error(error);
+    dispatch(setError());
   }
 };
 
@@ -43,7 +44,7 @@ export const newDebt = (debt) => async (dispatch) => {
     dispatch(addDebt(debt));
     id += 1;
   } catch (error) {
-    console.error(error);
+    dispatch(setError());
   }
 };
 

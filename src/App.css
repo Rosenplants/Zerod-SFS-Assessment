@@ -16,6 +16,10 @@ p {
   font-weight: bold;
 }
 
+.error {
+  color: red;
+}
+
 /* Table Styles */
 input {
   margin: auto 2rem;
@@ -57,12 +61,14 @@ button {
 }
 
 button.add {
-  background-color: lightskyblue;
+  background-color: #43b7ff;
+  color: white;
   border-color: #4c89af;
 }
 
 button.remove {
-  background-color: lightcoral;
+  background-color: #ec6e6e;
+  color: white;
   border-color: #b73303;
 }
 

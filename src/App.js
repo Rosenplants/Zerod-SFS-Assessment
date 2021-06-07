@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import './App.css';
 import { fetchDebts } from './store/debts';
 import Table from './components/Table';
@@ -10,6 +10,7 @@ import AddFormPopUp from './components/AddFormPopUp';
 function App() {
   // Redux Hooks to allow us to easily fetch the debts and get access to them
   const dispatch = useDispatch();
+  const error = useSelector((state) => state.error);
   const [isPopUpOpen, setPopUpOpen] = useState(false);
 
   // As soon as the component mounts, fetches the data and updates the store
@@ -29,6 +30,12 @@ function App() {
     <div className="App">
       {isPopUpOpen ? <AddFormPopUp close={closePopUp} /> : null}
       <h1>Sarah Zerod SFS Coding Assesment</h1>
+      {error ? (
+        <p className="error">
+          We're sorry, but there was an error. Please try again in a few
+          minutes.
+        </p>
+      ) : null}
       <Table />
       <ButtonRow openAdd={openPopUp} />
       <TotalRows />
