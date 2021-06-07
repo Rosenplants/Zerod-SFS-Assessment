@@ -4,7 +4,7 @@ import DataRow from './DataRow';
 import { mainSwitch } from '../store/checkedRows';
 import { updateTotal } from '../store/totalBalance';
 
-export default function Table({ totalBalance, activeRows }) {
+export default function Table({ activeRows }) {
   const debts = useSelector((state) => state.debts);
   const dispatch = useDispatch();
 
@@ -17,18 +17,16 @@ export default function Table({ totalBalance, activeRows }) {
   ];
 
   const checkAllHandler = (evt) => {
-    const checkboxes = document.getElementsByClassName('debt-checkbox');
+    const checkboxes = Array.from(
+      document.getElementsByClassName('debt-checkbox')
+    );
     if (activeRows === checkboxes.length) {
-      for (let i = 0; i < checkboxes.length; i++) {
-        checkboxes[i].checked = false;
-      }
+      checkboxes.forEach((box) => (box.checked = false));
       dispatch(updateTotal(0));
       dispatch(mainSwitch(0));
       evt.target.checked = false;
     } else {
-      for (let i = 0; i < checkboxes.length; i++) {
-        checkboxes[i].checked = true;
-      }
+      checkboxes.forEach((box) => (box.checked = true));
       dispatch(updateTotal(debts.reduce((acc, debt) => acc + debt.balance, 0)));
       dispatch(mainSwitch(checkboxes.length));
       evt.target.checked = true;
