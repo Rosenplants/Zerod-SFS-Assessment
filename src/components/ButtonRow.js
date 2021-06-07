@@ -2,7 +2,7 @@ import React from 'react';
 import { useDispatch } from 'react-redux';
 import { removeDebts } from '../store/debts';
 
-export default function ButtonRow() {
+export default function ButtonRow({ openAdd }) {
   const dispatch = useDispatch();
 
   const handleRemove = () => {
@@ -15,7 +15,7 @@ export default function ButtonRow() {
 
   return (
     <div id="button-row">
-      <button type="button" className="add">
+      <button type="button" className="add" onClick={openAdd}>
         Add Debt
       </button>
       <button type="button" className="remove" onClick={handleRemove}>

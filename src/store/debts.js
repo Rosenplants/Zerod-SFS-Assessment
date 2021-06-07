@@ -33,6 +33,20 @@ export const fetchDebts = () => async (dispatch) => {
   }
 };
 
+let id = 11;
+
+export const newDebt = (debt) => async (dispatch) => {
+  try {
+    // Here is where a proper POST route would take place
+    // In the meantime, we add an id to the form information and send it through to the store
+    debt.id = id;
+    dispatch(addDebt(debt));
+    id += 1;
+  } catch (error) {
+    console.error(error);
+  }
+};
+
 // Reducer
 const reducer = (state = [], action) => {
   switch (action.type) {

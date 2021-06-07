@@ -4,8 +4,9 @@ import DataRow from './DataRow';
 import { mainSwitch } from '../store/checkedRows';
 import { updateTotal } from '../store/totalBalance';
 
-export default function Table({ activeRows }) {
+export default function Table() {
   const debts = useSelector((state) => state.debts);
+  const activeRows = useSelector((state) => state.checkedRows);
   const dispatch = useDispatch();
 
   const headers = [
